@@ -1,6 +1,6 @@
 JUDGES_DIR = '/home/judges/'  # Path to judges folder
 
-GVALUER_LOCATION = '/home/judges/001501/problems/gvaluer'  # Path to compiled gvaluer
+GVALUER_LOCATION = '/home/judges2/files/gvaluer'  # Path to compiled gvaluer
 
 CREATE_STATEMENTS = True  # Change it to False if you do not want to create statements for problems
 
@@ -23,7 +23,7 @@ PROBLEM_CFG_START = "# -*- coding: utf-8 -*-\n\n[problem]"
 
 GVALUER_GLOBAL_PART = '''global {
     stat_to_judges 1;
-    stat_to_users 0;
+    stat_to_users 1;
 }
 '''
 

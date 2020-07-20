@@ -77,7 +77,7 @@ def generate_valuer(tree: ET.ElementTree, has_groups=True) -> OrderedDict:
         if min_test[test_group[test_id]] is None:
             min_test[test_group[test_id]] = test_id + 1
         max_test[test_group[test_id]] = test_id + 1
-        group_score[test_group[test_id]] = max(group_score[test_group[test_id]], test_points[test_id])
+        group_score[test_group[test_id]] = group_score[test_group[test_id]] + test_points[test_id]
 
     valuer = open('valuer.cfg', 'w')
     print(GVALUER_GLOBAL_PART, file=valuer)
