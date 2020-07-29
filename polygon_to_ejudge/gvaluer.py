@@ -28,6 +28,8 @@ def generate_valuer(tree: ET.ElementTree, has_groups=True) -> OrderedDict:
 
     group_name = dict()
 
+    total_score_no_group = 0
+
     for test in tree.find('judging').find('testset').find('tests'):
         test_data = test.attrib
         if 'group' not in test_data:
@@ -39,13 +41,21 @@ def generate_valuer(tree: ET.ElementTree, has_groups=True) -> OrderedDict:
                 group_name[test_data['group']] = c
             test_group.append(group_name[test_data['group']])
         else:
-            test_points.append(0)
+            if 'points' in test_data:
+                p = int(float(test_data['points']))
+                test_points.append(p)
+                total_score_no_group += p
+            else:
+                test_points.append(0)
 
     if not has_groups:
-        group_name = {None: 0}
+        #group_name = {None: 0}
         test_group = [0] * len(test_points)
-        test_points = [0] * len(test_group)
-        test_points[-1] = 100
+        for i in range(len(test_points)):
+            test_group[i] = i
+            group_name[i] = i
+        #test_points = [0] * len(test_group)
+        #test_points[-1] = 100
 
     tests = len(test_points)
     groups = len(group_name)
